@@ -5,6 +5,9 @@ import os
 import requests
 import csv
 
+# Streamlit must set page config first
+st.set_page_config(page_title="Stock Data Analysis", layout="wide")
+
 # Function to generate stock data
 def generate_stock_data():
     apikey = 'AOV5497T4Z3PF1O5'  # Replace with your actual API key
@@ -54,8 +57,6 @@ df.dropna(inplace=True)
 # Sort data by timestamp
 df.sort_values(by='Timestamp', inplace=True)
 
-# Streamlit UI
-st.set_page_config(page_title="Stock Data Analysis", layout="wide")
 st.title("📈 Stock Data Analysis App")
 st.sidebar.header("Filter Options")
 
