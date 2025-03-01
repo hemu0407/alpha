@@ -1,10 +1,18 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 # Load the stock data CSV file
 csv_file_path = "stock_data.csv"
-df = pd.read_csv(csv_file_path)
+
+# Check if file exists
+if os.path.exists(csv_file_path):
+    df = pd.read_csv(csv_file_path)
+    st.success("CSV file loaded successfully!")
+else:
+    st.error("Error: stock_data.csv not found. Please generate the file first.")
+    st.stop()
 
 # Convert 'Timestamp' to datetime format
 df['Timestamp'] = pd.to_datetime(df['Timestamp'])
@@ -56,4 +64,3 @@ with tab2:
     st.dataframe(filtered_df, use_container_width=True)
 
 st.success("Analysis Complete! Use the filters to adjust the view.")
-
